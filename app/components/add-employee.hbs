@@ -1,0 +1,36 @@
+<div class="add">
+  <div class="addEmployee">
+    <h2>Add Employee Details</h2>
+    <div class="addEmployees">
+      <form {{on "submit" this.submitForm}}>
+        <table>
+          <tr>
+            <td><label for="name">Employee Name:</label></td>
+            <td><input type="text" id="name" name="name" placeholder="Employee Name" required /></td>
+          </tr>
+          <tr>
+            <td><label for="dob">Date of Birth:</label></td>
+            <td><input type="date" id="dob" name="dob" required /></td>
+          </tr>
+          <tr>
+            <td><label for="country">Country:</label></td>
+            <td>
+              <PowerSelect
+                @options={{this.countries}}
+                @selected={{this.selectedCountry}}
+                @onChange={{fn (mut this.selectedCountry)}}
+                as |country|>
+                {{country}}
+              </PowerSelect>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: center;">
+              <button type="submit">Add Employee</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>

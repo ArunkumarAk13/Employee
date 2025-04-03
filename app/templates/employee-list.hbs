@@ -1,0 +1,49 @@
+{{#each this.flashMessages.queue as |flash|}}
+  <div class="flash-message {{flash.type}}">
+    {{flash.message}}
+  </div>
+{{/each}}
+
+<div class="search" {{on-click-outside this.clearSearch}}>
+    <h2>Search Employee</h2>
+    <input type="search" placeholder="Search employees..." value={{this.searchQuery}} {{on "input" this.search}}/>
+</div>
+<div class="container">
+    {{#if this.filteredEmployees.length}}
+    <table>
+    <thead>
+        <tr>
+        <th>Select</th>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Country</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <VerticalCollection
+          @items={{this.filteredEmployees}}
+          @estimateHeight={{50}}
+          as |employee index|>
+        <tr>
+            <td><input type="checkbox" class="employeeindex" value={{index}}></td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.dob}}</td>
+            <td>{{employee.country}}</td>
+            <td><LinkTo @route="edit-employee" @model={{index}}><i class="fas fa-edit editSymbol"></i></LinkTo></td>
+            <td><button class="button" type="button" {{on "click" (perform this.deleteEmployee index)}}>Delete</button></td>
+        </tr>
+        </VerticalCollection>
+    </tbody>
+    </table>
+    {{else}}
+    <p>No employees found</p>
+    {{/if}}
+    {{#if (gt this.filteredEmployees.length 1)}}
+    <div class="deletebtn">
+    <button class="button selectButton" type="button" {{on "click" this.deleteSelectedEmployees}}>Select Delete</button>
+    <button class="button" type="button" {{on "click" this.deleteAllEmployees}}{{on-key "Shift+Delete" this.DeleteAllEmployees}}>Delete All</button>
+  </div>
+  {{/if}}
+</div>

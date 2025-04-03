@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <div class="logo">
+    <h2>Employee List</h2>
+  </div>
+  <div class="nav-button">
+    <LinkTo @route="add-employee" class="btn">Add Employee</LinkTo>
+  </div>
+</nav>
+{{#each this.flashMessages.queue as |flash|}}
+  <div class="flash-message {{flash.type}}">
+    {{flash.message}}
+  </div>
+{{/each}}
+
+<div class="mainContent">
+  {{liquid-outlet}}
+</div>
+<BasicDropdownWormhole />

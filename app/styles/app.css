@@ -1,0 +1,392 @@
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: #898989;
+}
+
+
+.addEmployee .ember-power-select-trigger {
+  width: 250px ;
+  display: inline-block;
+}
+
+.container {
+  width: 65%;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px black;
+  background-color: lightgrey;
+}
+
+.container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.container th,
+.container td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+  text-align: center;
+}
+
+.container table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.container table tr:hover {
+  background-color: rgb(44 39 39);
+  color: white;
+}
+
+.container th {
+  background-color: black;
+  color: white;
+  font-size: 20px;
+}
+
+.container .button {
+  background-image: linear-gradient(
+    to right,
+    #aa076b 0%,
+    #61045f 51%,
+    #aa076b 100%
+  );
+  width: 105px;
+  height: 35px;
+  text-align: center;
+  transition: 0.5s;
+  cursor: pointer;
+  background-size: 200% auto;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 10px;
+}
+
+.container .button:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
+.search input {
+  padding: 8px;
+  border-radius: 4px;
+  width: 80%;
+  margin-top: 15px;
+  box-shadow: 4px 4px 8px black;
+}
+
+.search {
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 8px;
+  max-width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  height: 140px;
+  background-image: linear-gradient(
+    to right,
+    #d9d9d9 0%,
+    black 51%,
+    lightgrey 100%
+  );
+  transition: 2s;
+  background-size: 200% auto;
+}
+
+.search:hover {
+  background-position: right center;
+  color: white;
+}
+
+.data {
+  margin-top: 50px;
+}
+
+.deletebtn {
+  margin-top: 15px;
+}
+
+.deletebtn :nth-child(2) {
+  margin-left: 15px;
+}
+
+
+.container .selectButton {
+  width: 150px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f1f20;
+  padding: 15px 20px;
+  color: white;
+}
+
+.nav-button .btn {
+  background: white;
+  color: #007bff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-button .btn:hover {
+  background: #0056b3;
+  color: white;
+}
+
+.flash-message {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  max-width: 300px;
+  width: auto;
+  z-index: 1000;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+.flash-message.success {
+  background-color: #4caf50;
+  color: white;
+  border: 2px solid #388e3c;
+}
+
+.flash-message.danger {
+  background-color: #f44336;
+  color: white;
+  border: 2px solid #d32f2f;
+}
+
+.flash-message.warning {
+  background-color: #ff9800;
+  color: white;
+  border: 2px solid #f57c00;
+}
+.flash-message.info {
+  background-color: #1f07f6;
+  color: white;
+  border: 2px solid #6a25f4;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.flash-message {
+  animation:
+    fadeIn 0.5s forwards,
+    fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 92vh;
+}
+
+.editEmployee {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.editEmployee:hover {
+  box-shadow: 1rem 1rem 2rem black;
+}
+
+.editEmployee h2 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.editEmployees form {
+  display: flex;
+  flex-direction: column;
+}
+
+.editEmployees table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.editEmployees td {
+  padding: 12px 10px;
+}
+.editEmployees tr:hover {
+  background-color: rgb(63, 61, 61);
+  color: white;
+}
+
+.editEmployees label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.editSymbol {
+  color: brown;
+}
+
+.editEmployees input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+
+.editEmployees button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.editEmployees button:hover {
+  background: linear-gradient(to right, #0056b3, #087bff);
+  color: white;
+}
+
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 92.5vh; 
+  background-color: #c7c4bf;
+background-image: linear-gradient(147deg, #c7c4bf 0%, #5D6166 74%);
+
+}
+
+.addEmployee {
+  padding: 20px;
+  border: 2px solid black;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  width: 600px;
+  background-color: #f5f5f5;
+  background-image: linear-gradient(147deg, #f5f5f5 0%, #fffafa 74%);
+  text-align: center;
+}
+
+.addEmployee table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.addEmployee td {
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #141414; 
+}
+
+.addEmployee tr:hover {
+  background-color: rgb(83, 80, 80);
+  color: white;
+}
+
+.addEmployee input {
+  width: 90%;
+  padding: 8px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.addEmployee input:focus {
+  border-color: black;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.addEmployee button {
+  background: rgb(72, 183, 76);
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  width: 160px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
+}
+.addEmployee h2{
+  margin-bottom: 20px;
+}
+
+.addEmployee button:hover {
+  background: #17842d;
+  transform: scale(1.05);
+}
+
+
+
+

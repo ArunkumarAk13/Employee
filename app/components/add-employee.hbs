@@ -10,7 +10,15 @@
           </tr>
           <tr>
             <td><label for="dob">Date of Birth:</label></td>
-            <td><input type="date" id="dob" name="dob" required /></td>
+            <td>
+              <EmberFlatpickr
+              @date={{this.dob}}
+              @onChange={{this.setDOB}}
+              @altInput={{true}}
+              @altFormat="F j, Y"
+              @dateFormat="Y-m-d"
+              class="flatpickr"/>
+            </td>
           </tr>
           <tr>
             <td><label for="country">Country:</label></td>

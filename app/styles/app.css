@@ -11,12 +11,6 @@ body {
   background-color: #898989;
 }
 
-
-.addEmployee .ember-power-select-trigger {
-  width: 90% ;
-  display: inline-block;
-}
-
 .container {
   width: 65%;
   margin: 50px auto;
@@ -272,10 +266,7 @@ body {
 .editEmployees td {
   padding: 12px 10px;
 }
-.editEmployees tr:hover {
-  background-color: rgb(63, 61, 61);
-  color: white;
-}
+
 
 .editEmployees label {
   font-size: 16px;
@@ -347,11 +338,6 @@ background-image: linear-gradient(147deg, #c7c4bf 0%, #5D6166 74%);
   border: 1px solid #141414; 
 }
 
-.addEmployee tr:hover {
-  background-color: rgb(83, 80, 80);
-  color: white;
-}
-
 .addEmployee input {
   width: 90%;
   padding: 8px;
@@ -386,7 +372,14 @@ background-image: linear-gradient(147deg, #c7c4bf 0%, #5D6166 74%);
   background: #17842d;
   transform: scale(1.05);
 }
-
+.addEmployee .ember-power-select-trigger {
+  width: 90% ;
+  display: inline-block;
+}
+.ember-power-select-dropdown {
+  z-index: 9999 !important;
+  position: absolute !important;
+}
 
 
 

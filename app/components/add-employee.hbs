@@ -11,13 +11,12 @@
           <tr>
             <td><label for="dob">Date of Birth:</label></td>
             <td>
-              <EmberFlatpickr
-              @date={{this.dob}}
-              @onChange={{this.setDOB}}
-              @altInput={{true}}
-              @altFormat="F j, Y"
-              @dateFormat="Y-m-d"
-              class="flatpickr"/>
+              <PikadayInput 
+              @value={{this.dob}} 
+              @onSelection={{this.setDOB}} 
+              @placeholder="Select DOB" 
+              @yearRange={{array 1950 2025}} 
+              />
             </td>
           </tr>
           <tr>

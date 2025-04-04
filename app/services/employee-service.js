@@ -12,6 +12,9 @@ export default class EmployeeService extends Service {
     { name: 'Linga', dob: '1993-10-10', country: 'Japan' },
   ];
 
+  @tracked countries = [
+    'India', 'USA', 'Canada', 'Germany', 'France','Australia', 'Japan', 'Brazil', 'United Kingdom', 'South Africa'];
+    
   get filteredEmployees() {
     return this.employees;
   }

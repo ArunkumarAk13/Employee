@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking'
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import 'ember-power-select/styles';
+import 'ember-pikaday/pikaday.css';
 
 
 export default class AddEmployeeComponent extends Component {
@@ -10,14 +11,19 @@ export default class AddEmployeeComponent extends Component {
   @service router;
   @service flashMessages;
 
+
   countries = ['India','USA', 'Canada',  'Germany', 'France', 'Australia', 'Japan', 'Brazil', 'United Kingdom', 'South Africa'
   ];
-  @tracked selectedCountry = null;
+  @tracked selectedCountry = 'Select Country';
   @tracked dob = null;
 
+  get countries() {
+  return this.employeeService.countries;
+  }
+  
   @action
-  setDOB([selectedDate]) {
-    this.dob = selectedDate;
+  setDOB(date) {
+  this.dob = date;
   }
 
   @action
@@ -25,7 +31,7 @@ export default class AddEmployeeComponent extends Component {
     event.preventDefault();
 
     let name = event.target.name.value;
-    let dob = this.dob?.toISOString().split('T')[0]
+    let dob = this.dob?.toLocaleDateString('en-CA');
     let country = this.selectedCountry;
 
     this.employeeService.addEmployee({ name, dob, country });

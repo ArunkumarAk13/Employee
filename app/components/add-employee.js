@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking'
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import 'ember-power-select/styles';
@@ -10,7 +11,7 @@ export default class AddEmployeeComponent extends Component {
 
   countries = ['India','USA', 'Canada',  'Germany', 'France', 'Australia', 'Japan', 'Brazil', 'United Kingdom', 'South Africa'
   ];
-  selectedCountry = null;
+  @tracked selectedCountry = null;
 
   @action
   submitForm(event) {

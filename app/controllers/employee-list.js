@@ -17,7 +17,9 @@ export default class EmployeeListController extends Controller {
 
   get filteredEmployees() {
     return this.employeeService.employees.filter((emp) =>
-      emp.name.toLowerCase().includes(this.searchQuery),
+      emp.name.toLowerCase().includes(this.searchQuery) ||
+      emp.dob.toLowerCase().includes(this.searchQuery) ||
+      emp.country.toLowerCase().includes(this.searchQuery),
     );
   }
   @action
@@ -51,9 +53,5 @@ export default class EmployeeListController extends Controller {
 
     this.employeeService.deleteSelectedEmployees(selectedIndexes);
     this.flashMessages.danger('Selected employees deleted');
-  }
-
-  get employee() {
-    return this.model.employee;
   }
 }

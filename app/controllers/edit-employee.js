@@ -41,7 +41,6 @@ export default class EditEmployeeController extends Controller {
       this.employeeService.employees[this.index] = { ...this.employee }; 
       this.flashMessages.info('Employee edited !');
     }
-
     this.router.transitionTo('employee-list'); 
   }
 }

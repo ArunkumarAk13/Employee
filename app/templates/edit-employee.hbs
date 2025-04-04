@@ -6,44 +6,18 @@
         <table>
           <tr>
             <td><label for="name">Employee Name:</label></td>
-            <td>
-              <input 
-                type="text" 
-                id="name" 
-                value={{this.employee.name}} 
-                {{on "input" this.updateName}} 
-                required 
-              />
-            </td>
+            <td><input type="text" id="name" value={{this.employee.name}} {{on "input" this.updateName}} required /></td>
           </tr>
           <tr>
             <td><label for="dob">Date of Birth:</label></td>
-            <td>
-              <input 
-                type="date" 
-                id="dob" 
-                value={{this.employee.dob}} 
-                {{on "input" this.updateDob}} 
-                required 
-              />
-            </td>
+            <td><input type="date" id="dob" value={{this.employee.dob}} {{on "input" this.updateDob}} required /></td>
           </tr>
           <tr>
             <td><label for="country">Country:</label></td>
-            <td>
-              <input 
-                type="text" 
-                id="country" 
-                value={{this.employee.country}} 
-                {{on "input" this.updateCountry}} 
-                required 
-              />
-            </td>
+            <td><input type="text" id="country" value={{this.employee.country}} {{on "input" this.updateCountry}} required /></td>
           </tr>
           <tr>
-            <td colspan="2" style="text-align: center;">
-              <button type="submit">Save</button>
-            </td>
+            <td colspan="2"><button type="submit">Save</button></td>
           </tr>
         </table>
       </form>

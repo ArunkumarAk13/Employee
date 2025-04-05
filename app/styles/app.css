@@ -8,7 +8,6 @@
 
 body {
   height: 100vh;
-  background-color: #898989;
 }
 
 .container {
@@ -102,9 +101,9 @@ body {
   height: 140px;
   background-image: linear-gradient(
     to right,
-    #d9d9d9 0%,
-    black 51%,
-    lightgrey 100%
+    #a4a0a0 0%,
+    rgb(255, 255, 255) 51%,
+    rgb(169, 164, 164) 100%
   );
   transition: 2s;
   background-size: 200% auto;
@@ -112,7 +111,7 @@ body {
 
 .search:hover {
   background-position: right center;
-  color: white;
+  color: black;
 }
 
 .data {
@@ -209,7 +208,7 @@ body {
 .flash-message {
   animation:
     fadeIn 0.5s forwards,
-    fadeOut 5s forwards;
+    fadeOut 3s forwards;
 }
 
 @keyframes fadeOut {
@@ -312,27 +311,29 @@ body.dark-mode .editSymbol {
   justify-content: center;
   align-items: center;
   height: 92.5vh; 
-  background-color: #c7c4bf;
-background-image: linear-gradient(147deg, #c7c4bf 0%, #5D6166 74%);
-
 }
 
-.addEmployee {
+ .addEmployee {
   padding: 20px;
-  border: 2px solid black;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
   width: 600px;
-  background-color: #f5f5f5;
-  background-image: linear-gradient(147deg, #f5f5f5 0%, #fffafa 74%);
+  background-color: white;
   text-align: center;
+}
+.addEmployee:hover{
+  box-shadow: 1rem 1rem 2rem black;
+  transition: 0.3s;
 }
 
 .addEmployee table {
   width: 100%;
   border-collapse: collapse;
+  background-color: white;
   font-size: 16px;
   border: none;
+}
+.addEmployees{
+  background-color: white;
 }
 
 .addEmployee td {
@@ -342,14 +343,14 @@ background-image: linear-gradient(147deg, #c7c4bf 0%, #5D6166 74%);
   border: none;
 }
 
-.addEmployee input {
+.addEmployees table input {
   width: 90%;
   padding: 8px;
-  border: 1px solid #999;
+  border: 1px solid #000000;
   border-radius: 6px;
   font-size: 16px;
   text-align: center;
-}
+} 
 
 .addEmployee input:focus {
   border-color: black;
@@ -383,6 +384,76 @@ background-image: linear-gradient(147deg, #c7c4bf 0%, #5D6166 74%);
 .ember-power-select-dropdown {
   z-index: 9999 !important;
   position: absolute !important;
+}
+.checkbox-label{
+  display: flex;
+  gap: 5px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.confirm-dialog {
+  background-color: #ffffff;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: scaleFade 0.25s ease-in-out;
+}
+
+.confirm-dialog p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.confirm-actions .button {
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  height: 40px;
+  width: 200px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+
+@keyframes scaleFade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 
@@ -524,8 +595,8 @@ body.dark-mode .add {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 92.5vh;
-  background-color: #1a1a1a;
+  height: 92.5vh; 
+  background-color: #191818;
 }
 
 body.dark-mode .addEmployee {
@@ -534,7 +605,7 @@ body.dark-mode .addEmployee {
   box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   width: 600px;
-  background-color: #e0e0e0;
+  background-color: #d3d3d3;
   text-align: center;
   color: #000000;
 }
@@ -548,7 +619,7 @@ body.dark-mode .addEmployee table {
   width: 100%;
   border-collapse: collapse;
   font-size: 16px;
-  background-color: #d3d3d3;
+  background-color: white;
   color: black;
   border-radius: 8px;
   overflow: hidden;
@@ -558,12 +629,12 @@ body.dark-mode .addEmployee td {
   padding: 12px;
   font-weight: bold;
   text-align: center;
-  background-color: whitesmoke;
+  background-color: #d3d3d3;
   border: none;
   color: #000000;
 }
 
-body.dark-mode .addEmployee input {
+body.dark-mode .addEmployees table input {
   width: 90%;
   padding: 8px;
   border: 1px solid black;
@@ -603,7 +674,6 @@ body.dark-mode .addEmployee .ember-power-select-trigger {
   background-color: whitesmoke;
   color: black;
   border-radius: 6px;
-  padding: 8px;
   border: 1px solid black;
 }
 
@@ -612,4 +682,16 @@ body.dark-mode .ember-power-select-dropdown {
   color: black;
   border: 1px solid black;
   z-index: 9999 !important;
+}
+body.dark-mode .confirm-actions .button {
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  height: 40px;
+  width: 200px;
+  cursor: pointer;
+  border: none;
+  border: 1px solid black;
+  transition: background-color 0.2s ease;
 }

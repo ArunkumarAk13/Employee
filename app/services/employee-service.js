@@ -35,7 +35,8 @@ export default class EmployeeService extends Service {
   }
 
   updateEmployee(index, updatedEmployee) {
-    this.employees[index] = { ...updatedEmployee };
-    
+    let updated = [...this.employees]; 
+    updated[index] = { ...updatedEmployee }; 
+    this.employees = updated; 
   }
 }

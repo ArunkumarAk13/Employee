@@ -12,10 +12,10 @@
             <td><label for="dob">Date of Birth:</label></td>
             <td>
               <PikadayInput 
-              @value={{this.dob}} 
-              @onSelection={{this.setDOB}} 
-              @placeholder="Select DOB" 
-              @yearRange={{array 1950 2025}} 
+                @value={{this.dob}} 
+                @onSelection={{this.setDOB}} 
+                @placeholder="Select DOB" 
+                @yearRange={{array 1950 2025}} 
               />
             </td>
           </tr>
@@ -31,12 +31,28 @@
               </PowerSelect>
             </td>
           </tr>
-          <tr>
-            <td colspan="2" style="text-align: center;">
-              <button type="submit">Add Employee</button>
-            </td>
-          </tr>
         </table>
+
+        <div class="confirmation-section">
+          <label class="checkbox-label">
+            <Input @type="checkbox" @checked={{this.agreeToTerms}} required />
+            <p>Accept Terms and Conditions</p>
+          </label>
+
+          <LiquidSpacer @growDuration={{300}} class="terms-spacer">
+            {{#if this.agreeToTerms}}
+              <ul class="terms-list">
+                <li>Your information will be securely stored.</li>
+                <li>You agree to be contacted if verification is needed.</li>
+                <li>Please ensure your details are correct before submitting.</li>
+              </ul>
+            {{/if}}
+          </LiquidSpacer>
+        </div>
+
+        <div style="text-align: center; margin-top: 1rem;">
+          <button type="submit">Add Employee</button>
+        </div>
       </form>
     </div>
   </div>

@@ -12,8 +12,6 @@ export default class AddEmployeeComponent extends Component {
   @service flashMessages;
 
 
-  countries = ['India','USA', 'Canada',  'Germany', 'France', 'Australia', 'Japan', 'Brazil', 'United Kingdom', 'South Africa'
-  ];
   @tracked selectedCountry = 'Select Country';
   @tracked dob = null;
 
@@ -31,7 +29,7 @@ export default class AddEmployeeComponent extends Component {
     event.preventDefault();
 
     let name = event.target.name.value;
-    let dob = this.dob?.toLocaleDateString('en-CA');
+    let dob = this.dob.toLocaleDateString('en-CA');
     let country = this.selectedCountry;
 
     this.employeeService.addEmployee({ name, dob, country });

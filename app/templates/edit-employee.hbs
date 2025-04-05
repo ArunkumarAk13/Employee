@@ -7,13 +7,7 @@
           <tr>
             <td><label for="name">Employee Name:</label></td>
             <td>
-              <input
-                type="text"
-                id="name"
-                value={{this.employee.name}}
-                {{on "input" this.updateName}}
-                required
-              />
+              <input type="text"id="name"value={{this.employee.name}} {{on "input" this.updateName}} required >
             </td>
           </tr>
 

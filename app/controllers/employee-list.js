@@ -8,23 +8,41 @@ export default class EmployeeListController extends Controller {
   @service employeeService;
   @service flashMessages;
 
+  @tracked showDeleteConfirm = false;
   @tracked searchQuery = '';
 
   @action
   search(event) {
     this.searchQuery = event.target.value.toLowerCase();
+    this.performSearch.perform(this.searchQuery);
+  }
+
+  @task({ restartable: true })
+  *performSearch() {
+    yield timeout(1000);
+  }
+
+  get isLoading() {
+    return this.performSearch.isRunning;
   }
 
   get filteredEmployees() {
+    let query = this.searchQuery;
+
+    if (!query) {
+      return this.employeeService.employees;
+    }
+
     return this.employeeService.employees.filter((emp) =>
-      emp.name.toLowerCase().includes(this.searchQuery) ||
-      emp.dob.toLowerCase().includes(this.searchQuery) ||
-      emp.country.toLowerCase().includes(this.searchQuery),
+      emp.name.toLowerCase().includes(query) ||
+      emp.dob.toLowerCase().includes(query) ||
+      emp.country.toLowerCase().includes(query)
     );
   }
+
   @action
   clearSearch() {
-    this.searchQuery = "";
+    this.searchQuery = '';
   }
 
   @task({ drop: true }) 
@@ -35,8 +53,14 @@ export default class EmployeeListController extends Controller {
   }
 
   @action
+  cancelDelete() {
+    this.showDeleteConfirm = false;
+  }
+
+  @action
   deleteAllEmployees() {
     this.employeeService.employees = [];
+    this.showDeleteConfirm = false;
     this.flashMessages.danger('All Employee Deleted');
   }
 
@@ -47,7 +71,7 @@ export default class EmployeeListController extends Controller {
     ].map((checkbox) => parseInt(checkbox.value));
 
     if (selectedIndexes.length === 0) {
-      this.flashMessages.warning('Atleast select one employee');
+      this.flashMessages.warning('At least select one employee');
       return;
     }
 

@@ -4,8 +4,11 @@
   </div>
   <div class="nav-button">
     <LinkTo @route="add-employee" class="btn">Add Employee</LinkTo>
+    <button class="btn" {{on "click" this.toggleDarkMode}}>{{this.Text}}</button>
   </div>
 </nav>
+
+
 {{#each this.flashMessages.queue as |flash|}}
   <div class="flash-message {{flash.type}}">
     {{flash.message}}
@@ -15,4 +18,5 @@
 <div class="mainContent">
   {{liquid-outlet}}
 </div>
+
 <BasicDropdownWormhole />

@@ -276,6 +276,9 @@ body {
 .editSymbol {
   color: brown;
 }
+body.dark-mode .editSymbol {
+  color: brown;
+}
 
 .editEmployees input {
   width: 100%;
@@ -329,13 +332,14 @@ background-image: linear-gradient(147deg, #c7c4bf 0%, #5D6166 74%);
   width: 100%;
   border-collapse: collapse;
   font-size: 16px;
+  border: none;
 }
 
 .addEmployee td {
   padding: 12px;
   font-weight: bold;
   text-align: center;
-  border: 1px solid #141414; 
+  border: none;
 }
 
 .addEmployee input {
@@ -382,4 +386,230 @@ background-image: linear-gradient(147deg, #c7c4bf 0%, #5D6166 74%);
 }
 
 
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
 
+body.dark-mode .container,
+body.dark-mode .addEmployee,
+body.dark-mode .search,
+body.dark-mode .edit {
+  background-color: #1e1e1e;
+  border-color: white;
+  color: white;
+  box-shadow: 2px 2px 4px whitesmoke;
+}
+body.dark-mode .container .button {
+  background-image: linear-gradient(
+    to right,
+    #ffffff 0%,
+    #818181 51%,
+    #ffffff 100%
+  );
+  width: 105px;
+  height: 35px;
+  text-align: center;
+  transition: 0.5s;
+  cursor: pointer;
+  background-size: 200% auto;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 10px;
+}
+
+body.dark-mode .container .selectButton {
+  width: 150px;
+}
+
+body.dark-mode .navbar {
+  background-color: #1c1c1c;
+  color: white;
+  border-bottom: 2px solid white;
+}
+
+body.dark-mode .navbar h2 {
+  color: white;
+}
+
+body.dark-mode .nav-button .btn {
+  background-color: #d9d7d7;
+  color: rgb(2, 2, 2);
+  border: 1px solid white;
+}
+
+body.dark-mode .container table {
+  background-color: #1e1e1e;
+  color: white;
+  border-collapse: collapse;
+}
+
+body.dark-mode th{
+    border: 1px solid rgb(108, 106, 106);
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+
+}
+body.dark-mode td {
+  border: 1px solid white;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+body.dark-mode .search {
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 8px;
+  max-width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  height: 140px;
+  background-image: linear-gradient(
+    to right,
+    #ebebeb 0%,
+    rgb(91, 89, 89) 51%,
+    rgb(232, 226, 226) 100%
+  );
+  transition: 2s;
+  background-size: 200% auto;
+  color: black;
+}
+
+body.dark-mode input,
+body.dark-mode .ember-power-select-trigger {
+  background-color: whitesmoke;
+  color: black;
+  border: 1px solid white;
+}
+
+body.dark-mode input:focus {
+  border-color: white;
+  outline: none;
+  box-shadow: 0 0 5px white;
+}
+
+body.dark-mode .editEmployee h2 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000000;
+}
+body.dark-mode .editEmployee{
+  border: 1px solid white;
+  background-color: #e0e0e0;
+}
+body.dark-mode .editEmployees table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #d3d3d3;
+  color: black;
+  border-radius: 8px;
+}
+
+body.dark-mode .editEmployees td {
+  padding: 12px 10px;
+  border: none;
+  background-color: #e0e0e0;
+  color: #000000;
+}
+
+body.dark-mode .add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 92.5vh;
+  background-color: #1a1a1a;
+}
+
+body.dark-mode .addEmployee {
+  padding: 20px;
+  border: 1px solid white;
+  box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  width: 600px;
+  background-color: #e0e0e0;
+  text-align: center;
+  color: #000000;
+}
+
+body.dark-mode .addEmployee h2 {
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+body.dark-mode .addEmployee table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  background-color: #d3d3d3;
+  color: black;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+body.dark-mode .addEmployee td {
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+  background-color: whitesmoke;
+  border: none;
+  color: #000000;
+}
+
+body.dark-mode .addEmployee input {
+  width: 90%;
+  padding: 8px;
+  border: 1px solid black;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 6px;
+  font-size: 16px;
+  text-align: center;
+}
+
+body.dark-mode .addEmployee input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .addEmployee button {
+  background: white;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  width: 160px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
+  border: 1px solid black;
+}
+
+body.dark-mode .addEmployee button:hover {
+  background: #d3d3d3;
+  transform: scale(1.05);
+  color: black;
+}
+
+body.dark-mode .addEmployee .ember-power-select-trigger {
+  width: 90%;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 6px;
+  padding: 8px;
+  border: 1px solid black;
+}
+
+body.dark-mode .ember-power-select-dropdown {
+  background-color: whitesmoke;
+  color: black;
+  border: 1px solid black;
+  z-index: 9999 !important;
+}

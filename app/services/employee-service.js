@@ -8,8 +8,12 @@ export default class EmployeeService extends Service {
   @tracked employees = [
     { name: 'Sam', dob: '1990-05-15', country: 'India' },
     { name: 'Vijay', dob: '1992-07-20', country: 'India' },
-    { name: 'Arul', dob: '1995-08-25', country: 'India' },
     { name: 'Linga', dob: '1993-10-10', country: 'Japan' },
+    { name: 'jaga', dob: '1990-05-18', country: 'Canada' },
+    { name: 'brijesh', dob: '1992-09-25', country: 'Australia' },
+    { name: 'delvin', dob: '2005-07-12', country: 'India' },
+    { name: 'maha', dob: '1993-02-10', country: 'United Kingdom' },
+    { name: 'abith', dob: '2004-03-15', country: 'India' }
   ];
 
   @tracked countries = [

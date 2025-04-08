@@ -47,7 +47,7 @@ export default class EmployeeListController extends Controller {
 
   @task({ drop: true }) 
   *deleteEmployee(index) {
-    yield timeout(1000);
+    yield timeout(500);
     this.employeeService.deleteEmployee(index);
     this.flashMessages.danger('Employee Deleted!');
   }
@@ -57,25 +57,40 @@ export default class EmployeeListController extends Controller {
     this.showDeleteConfirm = false;
   }
 
-  @action
-  deleteAllEmployees() {
+  @task({drop: true})
+  *deleteAllEmployees(){
+    yield timeout(1000);
     this.employeeService.employees = [];
     this.showDeleteConfirm = false;
     this.flashMessages.danger('All Employee Deleted');
   }
+  @task({ drop: true })
+  *deleteSelectedEmployees() {
+  const selectedCheckboxes = [
+    ...document.querySelectorAll('.employeeindex:checked'),
+  ];
 
-  @action
-  deleteSelectedEmployees() {
-    const selectedIndexes = [
-      ...document.querySelectorAll('.employeeindex:checked'),
-    ].map((checkbox) => parseInt(checkbox.value));
+  const selectedIndexes = selectedCheckboxes.map((checkbox) =>
+    parseInt(checkbox.value)
+  );
 
-    if (selectedIndexes.length === 0) {
-      this.flashMessages.warning('At least select one employee');
-      return;
-    }
-
-    this.employeeService.deleteSelectedEmployees(selectedIndexes);
-    this.flashMessages.danger('Selected employees deleted');
+  if (selectedIndexes.length === 0) {
+    this.flashMessages.warning('At least select one employee');
+    return;
   }
+  yield timeout(1000);
+
+  this.employeeService.deleteSelectedEmployees(selectedIndexes);
+
+  selectedCheckboxes.forEach((checkbox) => {
+    checkbox.checked = false;
+  });
+
+  this.flashMessages.danger('Selected employees deleted');
+}
+
+get isDeleting() {
+  return  this.deleteSelectedEmployees.isRunning ;
+}
+
 }

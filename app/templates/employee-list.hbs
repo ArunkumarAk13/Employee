@@ -10,63 +10,76 @@
 </div>
 
 <div class="container">
-  
-      <table>
-        {{#if this.filteredEmployees.length}}
-        <thead>
-          <tr>
-            <th class="select-heading">Select</th>
-            <th class="name-heading">Name</th>
-            <th class="dob-heading">DOB</th>
-            <th class="country-heading">Country</th>
-            <th class="edit-heading">Edit</th>
-            <th class="delete-heading">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-        {{#if this.isLoading}}
-          <tr>
-            <td colspan="6" class="loading"> Loading search results...</td>
-          </tr>
-        {{else}}
-          <VerticalCollection
+  <table>
+    <thead>
+      <tr>
+        <th class="select-heading">Select</th>
+        <th class="name-heading">Name</th>
+        <th class="dob-heading">DOB</th>
+        <th class="country-heading">Country</th>
+        <th class="edit-heading">Edit</th>
+        <th class="delete-heading">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#if (or this.isLoading this.isSelectDeleting)}}
+        <tr>
+          <td colspan="6" class="loading">
+            {{#if this.isSelectDeleting}}
+              Deleting selected employees...
+            {{else}}
+              Loading search results...
+            {{/if}}
+          </td>
+        </tr>
+      {{else if this.filteredEmployees.length}}
+        <VerticalCollection
           @items={{this.filteredEmployees}}
           @estimateHeight={{55}}
           @bufferSize={{1}}
           @containerSelector=".container"
           @staticHeight={{true}}
           as |employee index|>
-            <tr>
-              <td ><input type="checkbox" class="employeeindex" value={{index}} /></td>
-              <td>{{employee.name}}</td>
-              <td>{{employee.dob}}</td>
-              <td> {{employee.country}}</td>
-              <td><LinkTo @route="edit-employee" @model={{index}}><i class="fas fa-edit editSymbol"></i></LinkTo></td>
-              <td><button class="button" type="button" {{on "click" (perform this.deleteEmployee index)}}>Delete</button>
-              </td>
-            </tr>
-          </VerticalCollection>
-        {{/if}}
-      </tbody>
+          <tr>
+            <td><input type="checkbox" class="employeeindex" value={{index}} /></td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.dob}}</td>
+            <td>{{employee.country}}</td>
+            <td>
+              <LinkTo @route="edit-employee" @model={{index}}>
+                <i class="fas fa-edit editSymbol"></i>
+              </LinkTo>
+            </td>
+            <td>
+              <button class="button" type="button" {{on "click" (perform this.deleteEmployee index)}}>
+                Delete
+              </button>
+            </td>
+          </tr>
+        </VerticalCollection>
       {{else}}
         <tr>
-          <td colspan="6" class="loading"> No employees found</td>
+          <td colspan="6" class="loading">No employees found</td>
         </tr>
       {{/if}}
-    </table>
-  
+    </tbody>
+  </table>
 </div>
 
 <div class="deleteButtons">
   {{#if (gt this.filteredEmployees.length 1)}}
     <div class="deletebtn">
-      <button class="button selectButton" type="button" {{on "click" (perform this.deleteSelectedEmployees)}}>Select Delete</button>
+      <button class="button selectButton" type="button" {{on "click" (perform this.deleteSelectedEmployees)}}>
+        Select Delete
+      </button>
       <button 
         class="button Deleteallemployee" 
         type="button" 
         {{on "click" (fn (mut this.showDeleteConfirm) true)}} 
-        {{on-key "Shift+Delete" this.showDeleteConfirm}}
-      >Delete All</button>
+        {{on-key "Shift+Delete" this.showDeleteConfirm}}>
+        Delete All
+      </button>
     </div>
   {{/if}}
 
@@ -75,8 +88,12 @@
       <div class="confirm-dialog">
         <p>Are you sure you want to delete all employees?</p>
         <div class="confirm-actions">
-          <button class="button" {{on "click" (perform this.deleteAllEmployees)}} {{on-key "Enter" (perform this.deleteAllEmployees)}}>Yes, Delete</button>
-          <button class="button" {{on "click" this.cancelDelete}} {{on-key "Escape" this.cancelDelete}}>Cancel</button>
+          <button class="button" {{on "click" (perform this.deleteAllEmployees)}} {{on-key "Enter" (perform this.deleteAllEmployees)}}>
+            Yes, Delete
+          </button>
+          <button class="button" {{on "click" this.cancelDelete}} {{on-key "Escape" this.cancelDelete}}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>

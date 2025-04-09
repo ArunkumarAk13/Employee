@@ -10,6 +10,7 @@ export default class EmployeeListController extends Controller {
 
   @tracked showDeleteConfirm = false;
   @tracked searchQuery = '';
+  @tracked isSelectDeleting = false;
 
   @action
   search(event) {
@@ -23,7 +24,7 @@ export default class EmployeeListController extends Controller {
   }
 
   get isLoading() {
-    return this.performSearch.isRunning;
+    return this.performSearch.isRunning || this.isSelectDeleting;
   }
 
   get filteredEmployees() {
@@ -57,40 +58,38 @@ export default class EmployeeListController extends Controller {
     this.showDeleteConfirm = false;
   }
 
-  @task({drop: true})
-  *deleteAllEmployees(){
+  @task({ drop: true })
+  *deleteAllEmployees() {
     yield timeout(1000);
     this.employeeService.employees = [];
     this.showDeleteConfirm = false;
     this.flashMessages.danger('All Employee Deleted');
   }
+
   @task({ drop: true })
   *deleteSelectedEmployees() {
-  const selectedCheckboxes = [
-    ...document.querySelectorAll('.employeeindex:checked'),
-  ];
+    const selectedCheckboxes = [
+      ...document.querySelectorAll('.employeeindex:checked'),
+    ];
+    const selectedIndexes = selectedCheckboxes.map((checkbox) =>
+      parseInt(checkbox.value)
+    );
+    if (selectedIndexes.length === 0) {
+      this.flashMessages.warning('At least select one employee');
+      return;
+    }
+    this.isSelectDeleting = true;
+    yield timeout(1000);
+    this.employeeService.deleteSelectedEmployees(selectedIndexes);
 
-  const selectedIndexes = selectedCheckboxes.map((checkbox) =>
-    parseInt(checkbox.value)
-  );
-
-  if (selectedIndexes.length === 0) {
-    this.flashMessages.warning('At least select one employee');
-    return;
+    selectedCheckboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+    this.isSelectDeleting = false;
+    this.flashMessages.danger('Selected employees deleted');
   }
-  yield timeout(1000);
 
-  this.employeeService.deleteSelectedEmployees(selectedIndexes);
-
-  selectedCheckboxes.forEach((checkbox) => {
-    checkbox.checked = false;
-  });
-
-  this.flashMessages.danger('Selected employees deleted');
-}
-
-get isDeleting() {
-  return  this.deleteSelectedEmployees.isRunning ;
-}
-
+  get isDeleting() {
+    return this.deleteSelectedEmployees.isRunning;
+  }
 }

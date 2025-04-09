@@ -7,7 +7,13 @@
           <tr>
             <td><label for="name">Employee Name:</label></td>
             <td>
-              <input type="text"id="name"value={{this.employee.name}} {{on "input" this.updateName}} required >
+              <input
+                type="text"
+                id="name"
+                value={{this.employee.name}}
+                {{on "input" this.updateName}}
+                required
+              />
             </td>
           </tr>
 
@@ -46,3 +52,16 @@
     </div>
   </div>
 </div>
+
+{{#if this.showSavingModal}}
+  <div class="popup">
+    <div class="confirm-popup">
+      <p>Saving employee...</p>
+      <div class="spinner"></div>
+
+      <div class="confirm-actions">
+        <button class="button edit-cancel-button" {{on "click" this.cancelSave}}>Cancel</button>
+      </div>
+    </div>
+  </div>
+{{/if}}

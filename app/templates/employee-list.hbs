@@ -10,16 +10,17 @@
 </div>
 
 <div class="container">
-  {{#if this.filteredEmployees.length}}
+  
       <table>
+        {{#if this.filteredEmployees.length}}
         <thead>
           <tr>
-            <th>Select</th>
-            <th>Name</th>
-            <th>DOB</th>
-            <th>Country</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th class="select-heading">Select</th>
+            <th class="name-heading">Name</th>
+            <th class="dob-heading">DOB</th>
+            <th class="country-heading">Country</th>
+            <th class="edit-heading">Edit</th>
+            <th class="delete-heading">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -29,26 +30,31 @@
           </tr>
         {{else}}
           <VerticalCollection
-            @items={{this.filteredEmployees}}
-            @estimateHeight={{50}}
-            as |employee index|>
+          @items={{this.filteredEmployees}}
+          @estimateHeight={{55}}
+          @bufferSize={{1}}
+          @containerSelector=".container"
+          @staticHeight={{true}}
+          as |employee index|>
             <tr>
-              <td><input type="checkbox" class="employeeindex" value={{index}} /></td>
+              <td ><input type="checkbox" class="employeeindex" value={{index}} /></td>
               <td>{{employee.name}}</td>
               <td>{{employee.dob}}</td>
-              <td>{{employee.country}}</td>
+              <td> {{employee.country}}</td>
               <td><LinkTo @route="edit-employee" @model={{index}}><i class="fas fa-edit editSymbol"></i></LinkTo></td>
-              <td>
-                <button class="button" type="button" {{on "click" (perform this.deleteEmployee index)}}>Delete</button>
+              <td><button class="button" type="button" {{on "click" (perform this.deleteEmployee index)}}>Delete</button>
               </td>
             </tr>
           </VerticalCollection>
         {{/if}}
       </tbody>
+      {{else}}
+        <tr>
+          <td colspan="6" class="loading"> No employees found</td>
+        </tr>
+      {{/if}}
     </table>
-  {{else}}
-    <p>No employees found</p>
-  {{/if}}
+  
 </div>
 
 <div class="deleteButtons">

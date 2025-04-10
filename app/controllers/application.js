@@ -12,6 +12,6 @@ export default class ApplicationController extends Controller {
   @action
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
-    document.body.classList.toggle('dark-mode');
+    document.documentElement.classList.toggle('dark-mode');
   }
 }

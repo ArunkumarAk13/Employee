@@ -13,7 +13,7 @@ export default class EditEmployeeRoute extends Route {
 
     return {
       index: params.index,
-      employee: { ...employee } 
+      employee: { ...employee },
     };
   }
 }

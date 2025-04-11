@@ -10,4 +10,5 @@ Router.map(function () {
   this.route('employee-list', { path: '/' });
   this.route('edit-employee', { path: '/edit-employee/:index' });
   this.route('add-employee');
+  this.route('dashboard');
 });

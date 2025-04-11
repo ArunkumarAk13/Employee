@@ -88,10 +88,10 @@
       <div class="confirm-dialog">
         <p>Are you sure you want to delete all employees?</p>
         <div class="confirm-actions">
-          <button class="button" {{on "click" (perform this.deleteAllEmployees)}} {{on-key "Enter" (perform this.deleteAllEmployees)}}>
+          <button class="button" type="button" {{on "click" (perform this.deleteAllEmployees)}} {{on-key "Enter" (perform this.deleteAllEmployees)}}>
             Yes, Delete
           </button>
-          <button class="button" {{on "click" this.cancelDelete}} {{on-key "Escape" this.cancelDelete}}>
+          <button class="button" type="button" {{on "click" this.cancelDelete}} {{on-key "Escape" this.cancelDelete}}>
             Cancel
           </button>
         </div>

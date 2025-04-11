@@ -34,10 +34,11 @@ export default class EmployeeListController extends Controller {
       return this.employeeService.employees;
     }
 
-    return this.employeeService.employees.filter((emp) =>
-      emp.name.toLowerCase().includes(query) ||
-      emp.dob.toLowerCase().includes(query) ||
-      emp.country.toLowerCase().includes(query)
+    return this.employeeService.employees.filter(
+      (emp) =>
+        emp.name.toLowerCase().includes(query) ||
+        emp.dob.toLowerCase().includes(query) ||
+        emp.country.toLowerCase().includes(query),
     );
   }
 
@@ -46,7 +47,7 @@ export default class EmployeeListController extends Controller {
     this.searchQuery = '';
   }
 
-  @task({ drop: true }) 
+  @task({ drop: true })
   *deleteEmployee(index) {
     yield timeout(500);
     this.employeeService.deleteEmployee(index);
@@ -72,7 +73,7 @@ export default class EmployeeListController extends Controller {
       ...document.querySelectorAll('.employeeindex:checked'),
     ];
     const selectedIndexes = selectedCheckboxes.map((checkbox) =>
-      parseInt(checkbox.value)
+      parseInt(checkbox.value),
     );
     if (selectedIndexes.length === 0) {
       this.flashMessages.warning('At least select one employee');

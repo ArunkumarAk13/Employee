@@ -58,8 +58,8 @@ export default class EditEmployeeController extends Controller {
   @task({ drop: true })
   *saveEmployeeTask() {
     yield timeout(2000);
-      this.employeeService.employees[this.index] = { ...this.employee };
-      this.flashMessages.info('Employee edited!');
+    this.employeeService.employees[this.index] = { ...this.employee };
+    this.flashMessages.info('Employee edited!');
 
     this.showSavingModal = false;
     this.router.transitionTo('employee-list');

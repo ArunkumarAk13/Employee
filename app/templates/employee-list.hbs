@@ -17,6 +17,7 @@
         <th class="name-heading">Name</th>
         <th class="dob-heading">DOB</th>
         <th class="country-heading">Country</th>
+        <th class="edit-heading">info</th>
         <th class="edit-heading">Edit</th>
         <th class="delete-heading">Delete</th>
       </tr>
@@ -46,6 +47,9 @@
             <td>{{employee.name}}</td>
             <td>{{employee.dob}}</td>
             <td>{{employee.country}}</td>
+            <td>
+              <LinkTo @route="info-employee" @model={{index}}><i class="fas fa-edit editSymbol"></i></LinkTo>
+            </td>
             <td>
               <LinkTo @route="edit-employee" @model={{index}}>
                 <i class="fas fa-edit editSymbol"></i>

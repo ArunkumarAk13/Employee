@@ -14,6 +14,13 @@ export default class EditEmployeeController extends Controller {
   @tracked employee = {};
   @tracked selectedCountry = null;
   @tracked showSavingModal = false;
+  @tracked selectedGender = 'Choose your gender';
+  @tracked selectedSkills = [];
+  @tracked skillsPlaceholder = 'Select skills';
+  @tracked collegePlaceholder = 'Select college';
+  @tracked selectedCollege = null;
+
+  
 
   set model(model) {
     if (model) {
@@ -25,6 +32,40 @@ export default class EditEmployeeController extends Controller {
 
   get countries() {
     return this.employeeService.countries;
+  }
+
+  get genders() {
+    return ['Male', 'Female'];
+  }
+
+  get skills() {
+    return ['JavaScript', 'Python', 'Java', 'C++', 'Ember.js', 'HTML', 'CSS'];
+  }
+
+  get groupedColleges() {
+    return [
+      {
+        groupName: 'Harvard University',
+        options: [
+          { name: 'Harvard College' },
+          { name: 'SEAS' }
+        ]
+      },
+      {
+        groupName: 'Stanford University',
+        options: [
+          { name: 'School of Engineering' },
+          { name: 'School of Humanities' }
+        ]
+      },
+      {
+        groupName: 'MIT',
+        options: [
+          { name: 'School of Science' },
+          { name: 'Architecture & Planning' }
+        ]
+      }
+    ];
   }
 
   @action
@@ -64,4 +105,24 @@ export default class EditEmployeeController extends Controller {
     this.showSavingModal = false;
     this.router.transitionTo('employee-list');
   }
+
+  @action
+  updateGender(selectedGender) {
+  this.selectedGender = selectedGender;
+  this.employee.gender = selectedGender;
+  }
+
+  @action
+  updateSkills(skills) {
+  this.selectedSkills = skills;
+  this.employee.skills = skills;
+  }
+
+  @action
+updateCollege(selected) {
+  this.selectedCollege = selected;
+  this.employee.college = selected;
+}
+
+
 }

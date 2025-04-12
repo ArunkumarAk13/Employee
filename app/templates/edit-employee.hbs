@@ -41,8 +41,50 @@
               </PowerSelect>
             </td>
           </tr>
-
           <tr>
+            <td><label for="gender">Gender:</label></td>
+            <td>
+              <PowerSelect
+                @options={{this.genders}}
+                @selected={{this.selectedGender}}
+                @onChange={{this.updateGender}}
+                as |gender|
+              >
+                {{gender}}
+              </PowerSelect>
+            </td>
+          </tr>
+          <tr>
+            <td><label>Skills:</label></td>
+            <td>
+              <PowerSelectMultiple
+                @options={{this.skills}}
+                @selected={{this.selectedSkills}}
+                @onChange={{this.updateSkills}}
+                @placeholder={{this.skillsPlaceholder}}
+                as |skill|
+              >
+                {{skill}}
+              </PowerSelectMultiple>
+            </td>
+          </tr>
+          <tr>
+            <td><label>College:</label></td>
+            <td>
+              <PowerSelect
+                @options={{this.groupedColleges}}
+                @selected={{this.selectedCollege}}
+                @onChange={{this.updateCollege}}
+                @groupLabelPath="university"
+                @optionLabelPath="name"
+                @placeholder={{this.collegePlaceholder}}
+                as |college|
+              >
+                {{college.name}}
+              </PowerSelect>
+            </td>
+          </tr>
+        <tr>
             <td colspan="2" style="text-align: center;">
               <button type="submit">Save</button>
             </td>

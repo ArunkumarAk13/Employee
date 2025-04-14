@@ -792,6 +792,23 @@ tr:hover {
     gap: 0.5rem;
   }
 }
+input[disabled] {
+  background-color: #f5f5f5;
+  color: #555;
+  border: 1px solid #ccc;
+  cursor: not-allowed;
+}
+
+.readonly-skills .tag {
+  display: inline-block;
+  background: #e0e0e0;
+  padding: 5px 10px;
+  margin: 2px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  color: #333;
+}
 
 @media (max-width: 480px) {
   .btn {

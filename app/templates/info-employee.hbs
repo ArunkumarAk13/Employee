@@ -1,0 +1,120 @@
+<div class="edit">
+  <div class="editEmployee">
+    <h2>Employee Information</h2>
+    <div class="editEmployees">
+      <form>
+        <table>
+          <tr>
+            <td><label for="name">Employee Name:</label></td>
+            <td>
+              <input
+                type="text"
+                id="name"
+                value={{this.employee.name}}
+                disabled
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td><label for="dob">Date of Birth:</label></td>
+            <td>
+              <input
+                type="text"
+                id="dob"
+                value={{this.employee.dob}}
+                disabled
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td><label for="country">Country:</label></td>
+            <td>
+              <input
+                type="text"
+                id="country"
+                value={{this.employee.country}}
+                
+                disabled
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td><label for="gender">Gender:</label></td>
+            <td>
+              <input
+                type="text"
+                id="gender"
+                value={{this.employee.gender}}
+                placeholder="Not Available"
+                disabled
+              />
+            </td>
+          </tr>
+
+          <tr>
+  <td><label>Skills:</label></td>
+  <td>
+    {{#if (gt this.employee.skills.length 0)}}
+      <div class="readonly-skills">
+        {{#each this.employee.skills as |skill|}}
+          <span class="tag">{{skill}}</span>
+        {{/each}}
+      </div>
+    {{else}}
+      <input
+        type="text"
+        value="Not available"
+        disabled
+      />
+    {{/if}}
+  </td>
+</tr>
+
+          <tr>
+            <td><label>College:</label></td>
+            <td>
+              <input
+                type="text"
+                value={{this.employee.college.name}}
+                placeholder="Not Available"
+                disabled
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td><label for="academicYear">Academic Year:</label></td>
+            <td>
+              {{#if this.employee.academicYear}}
+                <input
+                  type="text"
+                  value="{{this.employee.academicYear.from}} to {{this.employee.academicYear.to}}"
+                  disabled
+                />
+              {{else}}
+                <input
+                  type="text"
+                  value="Not available"
+                  disabled
+                />
+              {{/if}}
+            </td>
+            </tr>
+            <tr>
+                <td colspan="6" style="text-align: center; padding-top: 20px;">
+                    <p>If you need to edit details go to edit page from home page</p>
+                </td>
+          </tr>
+            <tr>
+                <td colspan="6" style="text-align: center; padding-top: 20px;">
+                    <button type="button" {{on "click" this.goToHomePage}}>Home</button>
+                </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>

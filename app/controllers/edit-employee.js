@@ -27,25 +27,37 @@ export default class EditEmployeeController extends Controller {
     end: null,
   };
 
-  @action
-  onCenterChange(selected) {
-    this.center = selected.date;
+
+  didReceiveAttrs() {
+    super.didReceiveAttrs();
+    this.resetForm();
   }
 
-  @action
-  onSelect(selected) {
-    if (selected.moment && selected.moment.start) {
-      this.range = {
-        start: selected.moment.start.toDate(),
-        end: selected.moment.end ? selected.moment.end.toDate() : null,
-      }}
-    };
+  resetForm() {
+    if (this.model) {
+      this.index = this.model.index;
+      this.employee = { ...this.model.employee }; 
+      this.selectedCountry = this.employee.country || null;
+      this.selectedGender = this.employee.gender || 'Choose your gender';
+      this.selectedSkills = this.employee.skills || [];
+      this.selectedCollege = this.employee.college || null;
+      if (this.employee.academicYear) {
+        this.range = {
+          start: new Date(this.employee.academicYear.from),
+          end: new Date(this.employee.academicYear.to),
+        };
+      }
+    }
+  }
 
   set model(model) {
     if (model) {
       this.index = model.index;
       this.employee = { ...model.employee };
       this.selectedCountry = this.employee.country;
+      this.selectedGender = this.employee.gender || 'Choose your gender';
+      this.selectedSkills = this.employee.skills || [];
+      this.selectedCollege = this.employee.college;
       if (this.employee.academicYear) {
         this.range.start = new Date(this.employee.academicYear.from);
         this.range.end = new Date(this.employee.academicYear.to);
@@ -132,7 +144,6 @@ export default class EditEmployeeController extends Controller {
     yield timeout(2000);
     this.employeeService.employees[this.index] = { ...this.employee };
     this.flashMessages.info('Employee edited!');
-
     this.showSavingModal = false;
     this.router.transitionTo('employee-list');
   }
@@ -154,4 +165,14 @@ export default class EditEmployeeController extends Controller {
     this.selectedCollege = selected;
     this.employee.college = selected;
   }
+
+  @action
+  onSelect(selected) {
+  if (selected && selected.moment && selected.moment.start) {
+    this.range = {
+      start: selected.moment.start.toDate(),
+      end: selected.moment.end ? selected.moment.end.toDate() : null,
+    };
+  }
+}
 }

@@ -2,18 +2,23 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default class InfoEmployeeRoute extends Route {
+  @service employeeService;
 
-    @service employeeService;
-    
-      model(params) {
-        let employee = this.employeeService.employees[params.index];
-    
-        if (!employee) {
-          return null;
-        }
-        return {
-          index: params.index,
-          employee: { ...employee },
-        };
-      }
+  model(params) {
+    let employee = this.employeeService.employees[params.index];
+
+    if (!employee) {
+      return null;
+    }
+    return {
+      index: params.index,
+      employee: { ...employee },
+    };
+  }
+
+  setupController(controller, model) {
+    super.setupController(controller, model);
+    controller.index = model.index;
+    controller.employee = model.employee;
+  }
 }

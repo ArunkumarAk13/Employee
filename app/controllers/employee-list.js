@@ -18,7 +18,7 @@ export default class EmployeeListController extends Controller {
     this.performSearch.perform(this.searchQuery);
   }
 
-  @task({ restartable: true })
+  @task({ keepLatest : true })
   *performSearch() {
     yield timeout(1000);
   }
@@ -47,9 +47,9 @@ export default class EmployeeListController extends Controller {
     this.searchQuery = '';
   }
 
-  @task({ drop: true })
+  @task({ enqueue: true })
   *deleteEmployee(index) {
-    yield timeout(500);
+    yield timeout(1000);
     this.employeeService.deleteEmployee(index);
     this.flashMessages.danger('Employee Deleted!');
   }

@@ -2,7 +2,7 @@
   <div class="addEmployee">
     <h2>Add Employee Details</h2>
     <div class="addEmployees">
-      <form {{on "submit" this.submitForm}}>
+      <form {{on "submit" (perform this.submitForm)}}>
         <table>
           <tr>
             <td><label for="name">Employee Name:</label></td>

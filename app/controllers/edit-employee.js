@@ -96,7 +96,7 @@ export default class EditEmployeeController extends Controller {
     this.showSavingModal = false;
   }
 
-  @task({ drop: true })
+  @task({ restartable : true })
   *saveEmployeeTask() {
     yield timeout(2000);
     this.employeeService.employees[this.index] = { ...this.employee };

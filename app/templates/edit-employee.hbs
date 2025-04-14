@@ -84,7 +84,22 @@
               </PowerSelect>
             </td>
           </tr>
-        <tr>
+          <tr>
+            <td><label for="academicYear">Academic Year:</label></td>
+            <td>
+              <PowerCalendarRange
+                @center={{this.center}}
+                @selected={{this.range}}
+                @onCenterChange={{this.onCenterChange}}
+                @onSelect={{this.onSelect}} 
+                as |cal|
+              >
+                <cal.Nav />
+                <cal.Days />
+              </PowerCalendarRange>
+            </td>
+          </tr>
+          <tr>
             <td colspan="2" style="text-align: center;">
               <button type="submit">Save</button>
             </td>

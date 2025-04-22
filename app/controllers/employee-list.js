@@ -12,9 +12,14 @@ export default class EmployeeListController extends Controller {
   @tracked searchQuery = '';
   @tracked isSelectDeleting = false;
   @tracked showColumnSettings = false;
-
   @tracked sortColumn = 'name';
   @tracked isAscending = true;
+  @tracked showSearchFilterSettings = false;
+  @tracked searchColumns = {
+    name: true,
+    dob: true,
+    country: true
+};
 
   @tracked columns = [
     { label: 'Select', visible: true, key: 'select' },
@@ -45,17 +50,36 @@ export default class EmployeeListController extends Controller {
   get filteredEmployees() {
     let query = this.searchQuery;
     let employees = this.employeeService.employees;
-
+  
     if (query) {
-      employees = employees.filter(
-        (emp) =>
-          emp.name.toLowerCase().includes(query) ||
-          emp.dob.toLowerCase().includes(query) ||
-          emp.country.toLowerCase().includes(query),
-      );
+      employees = employees.filter((emp) => {
+        return (
+          (this.searchColumns.name && emp.name.toLowerCase().includes(query)) ||
+          (this.searchColumns.dob && emp.dob.toLowerCase().includes(query)) ||
+          (this.searchColumns.country && emp.country.toLowerCase().includes(query))
+        );
+      });
     }
-
+  
     return this.sortEmployees(employees);
+  }
+
+  @action
+  toggleSearchFilterSettings() {
+  this.showSearchFilterSettings = !this.showSearchFilterSettings;
+}
+
+  @action
+  hideSearchFilters() {
+  this.showSearchFilterSettings = false;
+  }
+
+  @action
+  toggleSearchColumn(column) {
+  this.searchColumns = {
+    ...this.searchColumns,
+    [column]: !this.searchColumns[column]
+  };
   }
 
   sortEmployees(employees) {
@@ -106,15 +130,10 @@ export default class EmployeeListController extends Controller {
   @action
   toggleColumnSettings() {
     this.showColumnSettings = !this.showColumnSettings;
-    if(this.showColumnSettings){
-      this.showColumnSettings=true;
-    }
   }
   @action
   toggleColumnSettingsFalse(){
-    if (this.showColumnSettings){
       this.showColumnSettings=false;
-    }
   }
 
   @action

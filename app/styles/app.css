@@ -313,6 +313,10 @@ tr:hover {
   padding: 1.5rem;
   margin-bottom: 1rem;
 }
+.search-filter{
+  display: flex;
+  justify-content: space-between;
+}
 
 .search h2 {
   margin-bottom: 1rem;
@@ -342,11 +346,6 @@ tr:hover {
   margin-bottom: 2rem;
   overflow-y: auto;
   max-height: 360px;
-}
-
-.container table {
-  border: none;
-  width: 100%;
 }
 
 .container th {
@@ -986,4 +985,24 @@ button:hover {
 .container table thead i{
   cursor: pointer;
   margin-left: 5px;
+}
+
+.search-filters {
+  display: inline-block;
+  position: relative;
+  margin-left: 10px;
+}
+
+.filter-popup {
+  position: absolute;
+  top: 20px;
+  text-align: center;
+  min-width: 180px;
+  right: 0;
+  color: var(--text-color);
+  background: var(--background-color);
+  border: 1px solid #ddd;
+  padding: 10px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }

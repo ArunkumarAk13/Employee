@@ -3,14 +3,14 @@ import { tracked } from '@glimmer/tracking';
 
 export default class EmployeeService extends Service {
   @tracked employees = [
-    { name: 'Sam', dob: '1990-05-15', country: 'India' },
-    { name: 'Vijay', dob: '1992-07-20', country: 'India' },
-    { name: 'Linga', dob: '1993-10-10', country: 'Japan' },
-    { name: 'jaga', dob: '1990-05-18', country: 'Canada' },
-    { name: 'brijesh', dob: '1992-09-25', country: 'Australia' },
-    { name: 'delvin', dob: '2005-07-12', country: 'India' },
-    { name: 'maha', dob: '1993-02-10', country: 'United Kingdom' },
-    { name: 'abith', dob: '2004-03-15', country: 'India' },
+    { id:1 , name: 'Sam', dob: '1990-05-15', country: 'India' },
+    { id:2 , name: 'Vijay', dob: '1992-07-20', country: 'India' },
+    { id:3 , name: 'Linga', dob: '1993-10-10', country: 'Japan' },
+    { id:4 , name: 'jaga', dob: '1990-05-18', country: 'Canada' },
+    { id:5 , name: 'brijesh', dob: '1992-09-25', country: 'Australia' },
+    { id:6 , name: 'delvin', dob: '2005-07-12', country: 'India' },
+    { id:7 , name: 'maha', dob: '1993-02-10', country: 'United Kingdom' },
+    { id:8 , name: 'abith', dob: '2004-03-15', country: 'India' },
   ];
 
   @tracked countries = [

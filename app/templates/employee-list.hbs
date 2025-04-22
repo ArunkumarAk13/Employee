@@ -5,7 +5,41 @@
 {{/each}}
 
 <div class="search">
+  <div class="search-filter">
   <h2>Search Employee</h2>
+  <div class="search-filters" {{on-click-outside this.hideSearchFilters}}>
+  <i class="fas fa-filter" {{on "click" this.toggleSearchFilterSettings}}></i>
+
+  {{#if this.showSearchFilterSettings}}
+    <div class="filter-popup">
+      <h3>Search Filter</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Select</th>
+            <th>Column</th>
+          </tr>
+        </thead>
+        <tr>
+          <td><input type="checkbox" checked={{this.searchColumns.name}} {{on "change" (fn this.toggleSearchColumn "name")}} /></td>
+          <td>Name</td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" checked={{this.searchColumns.dob}} {{on "change" (fn this.toggleSearchColumn "dob")}} /></td>
+          <td> DOB</td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" checked={{this.searchColumns.country}} {{on "change" (fn this.toggleSearchColumn "country")}} /> </td>
+          <td>Country</td>
+        </tr>
+      </table>
+    </div>
+  {{/if}}
+  </div>
+</div>
+
   <input type="search" placeholder="Search employees..." value={{this.searchQuery}} {{on "input" this.search}} />
 </div>
 <div class="column-visiblity" {{on-click-outside this.toggleColumnSettingsFalse}}>

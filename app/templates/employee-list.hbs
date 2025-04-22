@@ -4,22 +4,76 @@
   </div>
 {{/each}}
 
-<div class="search" {{on-click-outside this.clearSearch}}>
+<div class="search">
   <h2>Search Employee</h2>
   <input type="search" placeholder="Search employees..." value={{this.searchQuery}} {{on "input" this.search}} />
 </div>
+<div class="column-visiblity" {{on-click-outside this.toggleColumnSettingsFalse}}>
+  <div class="column-toggle-icon" {{on "click" this.toggleColumnSettings}} >
+    <i class="fa-solid fa-cogs"></i>
+  </div>
 
-<div class="container">
+  {{#if this.showColumnSettings}}
+    <div class="column-settings-popup">
+      <div class="popup-header">
+        <h3>Column Visibility</h3>
+      </div>
+      <table class="column-settings-table">
+        <thead>
+          <tr>
+            <th>Show</th>
+            <th>Column</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.columns as |column|}}
+            <tr>
+              <td>
+                <input type="checkbox" checked={{column.visible}} {{on "change" (fn this.toggleColumnVisibility column)}} />
+              </td>
+              <td>{{column.label}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{/if}}
+</div>
+
+<div class="container" {{on-click-outside this.clearSearch}}>
   <table>
     <thead>
       <tr>
-        <th class="select-heading">Select</th>
-        <th class="name-heading">Name</th>
-        <th class="dob-heading">DOB</th>
-        <th class="country-heading">Country</th>
-        <th class="edit-heading">info</th>
-        <th class="edit-heading">Edit</th>
-        <th class="delete-heading">Delete</th>
+        {{#if (this.isColumnVisible "select")}}
+          <th class="select-heading">Select</th>
+        {{/if}}
+
+        {{#if (this.isColumnVisible "name")}}
+          <th>Name<i class="fa-solid fa-sort" {{on "click" (fn this.sortByColumn "name")}}></i></th>
+        {{/if}}
+
+        {{#if (this.isColumnVisible "dob")}}
+          <th>DOB
+            <i class="fa-solid fa-sort" {{on "click" (fn this.sortByColumn "dob")}}></i>
+          </th>
+        {{/if}}
+
+        {{#if (this.isColumnVisible "country")}}
+          <th>
+            Country
+            <i class="fa-solid fa-sort"  {{on "click" (fn this.sortByColumn "country")}}></i>
+          </th>
+        {{/if}}
+
+        {{#if (this.isColumnVisible "info")}}
+          <th class="edit-heading">Info</th>
+        {{/if}}
+        {{#if (this.isColumnVisible "edit")}}
+          <th class="edit-heading">Edit</th>
+        {{/if}}
+        {{#if (this.isColumnVisible "delete")}}
+          <th class="delete-heading">Delete</th>
+        {{/if}}
       </tr>
     </thead>
 
@@ -41,25 +95,42 @@
           @bufferSize={{1}}
           @containerSelector=".container"
           @staticHeight={{true}}
-          as |employee index|>
+          as |employee index|
+        >
           <tr>
+            {{#if (this.isColumnVisible "select")}}
             <td><input type="checkbox" class="employeeindex" value={{index}} /></td>
-            <td>{{employee.name}}</td>
-            <td>{{employee.dob}}</td>
-            <td>{{employee.country}}</td>
+            {{/if}}
+            {{#if (this.isColumnVisible "name")}}
+              <td>{{employee.name}}</td>
+            {{/if}}
+
+            {{#if (this.isColumnVisible "dob")}}
+              <td>{{employee.dob}}</td>
+            {{/if}}
+
+            {{#if (this.isColumnVisible "country")}}
+              <td>{{employee.country}}</td>
+            {{/if}}
+            {{#if (this.isColumnVisible "info")}}
             <td>
               <LinkTo @route="info-employee" @model={{index}}><i class="fa fa-info-circle"></i></LinkTo>
             </td>
+            {{/if}}
+            {{#if (this.isColumnVisible "edit")}}
             <td>
               <LinkTo @route="edit-employee" @model={{index}}>
                 <i class="fas fa-edit editSymbol"></i>
               </LinkTo>
             </td>
+            {{/if}}
+            {{#if (this.isColumnVisible "delete")}}
             <td>
               <button class="button" type="button" {{on "click" (perform this.deleteEmployee index)}}>
                 Delete
               </button>
             </td>
+            {{/if}}
           </tr>
         </VerticalCollection>
       {{else}}

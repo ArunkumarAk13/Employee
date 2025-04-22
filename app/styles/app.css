@@ -311,7 +311,7 @@ tr:hover {
   border-radius: 8px;
   box-shadow: 0 4px 10px var(--shadow-color);
   padding: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .search h2 {
@@ -947,4 +947,43 @@ button:hover {
   --primary-color-rgb: 33, 150, 243;
   --secondary-color-rgb: 76, 175, 80;
   --spinner-color-rgb: 33, 150, 243;
+}
+
+.column-settings-popup {
+  position: absolute;
+  top: 28%;
+  right: 0;
+  z-index: 999;
+  color: var(--text-color);
+  background-color:var(--background-color);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 220px;
+}
+
+.column-settings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.column-settings-table th,
+.column-settings-table td {
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  font-size: 14px;
+}
+
+.column-settings-table tr:not(:last-child) {
+  border-bottom: 1px solid #e0e0e0;
+}
+.column-toggle-icon{
+  text-align: right;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.container table thead i{
+  cursor: pointer;
+  margin-left: 5px;
 }

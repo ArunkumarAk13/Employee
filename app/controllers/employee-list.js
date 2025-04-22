@@ -11,6 +11,21 @@ export default class EmployeeListController extends Controller {
   @tracked showDeleteConfirm = false;
   @tracked searchQuery = '';
   @tracked isSelectDeleting = false;
+  @tracked showColumnSettings = false;
+
+  @tracked sortColumn = 'name';
+  @tracked isAscending = true;
+
+  @tracked columns = [
+    { label: 'Select', visible: true, key: 'select' },
+    { label: 'Name', visible: true, key: 'name' },
+    { label: 'DOB', visible: true, key: 'dob' },
+    { label: 'Country', visible: true, key: 'country' },
+    { label: 'Info', visible: true, key: 'info' },
+    { label: 'Edit', visible: true, key: 'edit' },
+    { label: 'Delete', visible: true, key: 'delete' }
+    
+  ];
 
   @action
   search(event) {
@@ -18,7 +33,7 @@ export default class EmployeeListController extends Controller {
     this.performSearch.perform(this.searchQuery);
   }
 
-  @task({ keepLatest : true })
+  @task({ keepLatest: true })
   *performSearch() {
     yield timeout(1000);
   }
@@ -29,22 +44,92 @@ export default class EmployeeListController extends Controller {
 
   get filteredEmployees() {
     let query = this.searchQuery;
+    let employees = this.employeeService.employees;
 
-    if (!query) {
-      return this.employeeService.employees;
+    if (query) {
+      employees = employees.filter(
+        (emp) =>
+          emp.name.toLowerCase().includes(query) ||
+          emp.dob.toLowerCase().includes(query) ||
+          emp.country.toLowerCase().includes(query),
+      );
     }
 
-    return this.employeeService.employees.filter(
-      (emp) =>
-        emp.name.toLowerCase().includes(query) ||
-        emp.dob.toLowerCase().includes(query) ||
-        emp.country.toLowerCase().includes(query),
-    );
+    return this.sortEmployees(employees);
+  }
+
+  sortEmployees(employees) {
+    if (!this.sortColumn) return employees;
+
+    return [...employees].sort((a, b) => {
+      let valA = a[this.sortColumn];
+      let valB = b[this.sortColumn];
+
+      if (this.sortColumn === 'dob') {
+        valA = new Date(valA);
+        valB = new Date(valB);
+      } else {
+        valA = valA.toLowerCase?.() || valA;
+        valB = valB.toLowerCase?.() || valB;
+      }
+
+      if (valA < valB) return this.isAscending ? -1 : 1;
+      if (valA > valB) return this.isAscending ? 1 : -1;
+      return 0;
+    });
+  }
+
+  @action
+  sortByColumn(column) {
+    if (this.sortColumn === column) {
+      this.isAscending = !this.isAscending;
+    } else {
+      this.sortColumn = column;
+      this.isAscending = true;
+    }
+  }
+
+  @action
+  getSortIcon(column) {
+    if (this.sortColumn === column) {
+      return this.isAscending ? 'fa-sort-up' : 'fa-sort-down';
+    } else {
+      return 'fa-sort';
+    }
   }
 
   @action
   clearSearch() {
     this.searchQuery = '';
+  }
+
+  @action
+  toggleColumnSettings() {
+    this.showColumnSettings = !this.showColumnSettings;
+    if(this.showColumnSettings){
+      this.showColumnSettings=true;
+    }
+  }
+  @action
+  toggleColumnSettingsFalse(){
+    if (this.showColumnSettings){
+      this.showColumnSettings=false;
+    }
+  }
+
+  @action
+  toggleColumnVisibility(targetColumn) {
+    this.columns = this.columns.map((column) =>
+      column.key === targetColumn.key
+        ? { ...column, visible: !column.visible }
+        : column
+    );
+  }
+
+  @action
+  isColumnVisible(columnKey) {
+    const column = this.columns.find(col => col.key === columnKey);
+    return column ? column.visible : false;
   }
 
   @task({ enqueue: true })

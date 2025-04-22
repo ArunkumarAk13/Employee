@@ -26,9 +26,6 @@ export default class EmployeeService extends Service {
     'South Africa',
   ];
 
-  get filteredEmployees() {
-    return this.employees;
-  }
 
   deleteEmployee(index) {
     this.employees = this.employees.filter((_, i) => i !== index);
@@ -36,7 +33,7 @@ export default class EmployeeService extends Service {
 
   deleteSelectedEmployees(selectedIndexes) {
     this.employees = this.employees.filter(
-      (_, i) => !selectedIndexes.includes(i),
+      (_, i) => !selectedIndexes.includes(i)
     );
   }
 

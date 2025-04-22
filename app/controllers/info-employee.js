@@ -5,10 +5,7 @@ import { action } from '@ember/object';
 
 export default class InfoEmployeeController extends Controller {
   @service router;
-
-  @tracked employee;
-  @tracked index;
-
+  
   @action
   goToHomePage() {
       this.router.transitionTo('employee-list');

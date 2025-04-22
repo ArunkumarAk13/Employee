@@ -15,40 +15,15 @@ export default class EditEmployeeController extends Controller {
   @tracked employee = {};
   @tracked selectedCountry = null;
   @tracked showSavingModal = false;
-  @tracked selectedGender = 'Choose your gender';
   @tracked selectedSkills = [];
+  @tracked selectedCollege = null;
   @tracked skillsPlaceholder = 'Select skills';
   @tracked collegePlaceholder = 'Select college';
-  @tracked selectedCollege = null;
-  @tracked center = new Date('2016-05-17');
-
   @tracked range = {
     start: null,
     end: null,
   };
 
-
-  didReceiveAttrs() {
-    super.didReceiveAttrs();
-    this.resetForm();
-  }
-
-  resetForm() {
-    if (this.model) {
-      this.index = this.model.index;
-      this.employee = { ...this.model.employee }; 
-      this.selectedCountry = this.employee.country || null;
-      this.selectedGender = this.employee.gender || 'Choose your gender';
-      this.selectedSkills = this.employee.skills || [];
-      this.selectedCollege = this.employee.college || null;
-      if (this.employee.academicYear) {
-        this.range = {
-          start: new Date(this.employee.academicYear.from),
-          end: new Date(this.employee.academicYear.to),
-        };
-      }
-    }
-  }
 
   set model(model) {
     if (model) {
@@ -58,10 +33,6 @@ export default class EditEmployeeController extends Controller {
       this.selectedGender = this.employee.gender || 'Choose your gender';
       this.selectedSkills = this.employee.skills || [];
       this.selectedCollege = this.employee.college;
-      if (this.employee.academicYear) {
-        this.range.start = new Date(this.employee.academicYear.from);
-        this.range.end = new Date(this.employee.academicYear.to);
-      }
     }
   }
 
@@ -74,30 +45,30 @@ export default class EditEmployeeController extends Controller {
   }
 
   get skills() {
-    return ['JavaScript', 'Python', 'Java', 'C++', 'Ember.js', 'HTML', 'CSS'];
+    return ['JavaScript', 'Python', 'Java', 'C++', 'Ember.js', 'HTML', 'CSS', 'Reactjs','Solidity'];
   }
 
   get groupedColleges() {
     return [
       {
-        groupName: 'Harvard University',
+        groupName: 'Anna University',
         options: [
-          { name: 'Harvard College' },
-          { name: 'SEAS' }
+          { name: 'SNS College of Engineering' },
+          { name: 'SNS College of Technology' }
         ]
       },
       {
         groupName: 'Stanford University',
         options: [
-          { name: 'School of Engineering' },
-          { name: 'School of Humanities' }
+          { name: 'Government Engineering College' },
+          { name: 'Government College of Technology' }
         ]
       },
       {
         groupName: 'MIT',
         options: [
-          { name: 'School of Science' },
-          { name: 'Architecture & Planning' }
+          { name: 'Hindhustan College 0of Engineering' },
+          { name: 'Kumaraguru Institute of Technology' }
         ]
       }
     ];

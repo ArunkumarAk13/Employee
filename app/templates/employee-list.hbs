@@ -53,16 +53,11 @@
         {{/if}}
 
         {{#if (this.isColumnVisible "dob")}}
-          <th>DOB
-            <i class="fa-solid fa-sort" {{on "click" (fn this.sortByColumn "dob")}}></i>
-          </th>
+          <th>DOB<i class="fa-solid fa-sort" {{on "click" (fn this.sortByColumn "dob")}}></i></th>
         {{/if}}
 
         {{#if (this.isColumnVisible "country")}}
-          <th>
-            Country
-            <i class="fa-solid fa-sort"  {{on "click" (fn this.sortByColumn "country")}}></i>
-          </th>
+          <th>Country<i class="fa-solid fa-sort"  {{on "click" (fn this.sortByColumn "country")}}></i></th>
         {{/if}}
 
         {{#if (this.isColumnVisible "info")}}
@@ -98,9 +93,11 @@
           as |employee index|
         >
           <tr>
+
             {{#if (this.isColumnVisible "select")}}
             <td><input type="checkbox" class="employeeindex" value={{index}} /></td>
             {{/if}}
+
             {{#if (this.isColumnVisible "name")}}
               <td>{{employee.name}}</td>
             {{/if}}
@@ -112,25 +109,19 @@
             {{#if (this.isColumnVisible "country")}}
               <td>{{employee.country}}</td>
             {{/if}}
+
             {{#if (this.isColumnVisible "info")}}
-            <td>
-              <LinkTo @route="info-employee" @model={{index}}><i class="fa fa-info-circle"></i></LinkTo>
-            </td>
+            <td><LinkTo @route="info-employee" @model={{index}}><i class="fa fa-info-circle"></i></LinkTo></td>
             {{/if}}
+
             {{#if (this.isColumnVisible "edit")}}
-            <td>
-              <LinkTo @route="edit-employee" @model={{index}}>
-                <i class="fas fa-edit editSymbol"></i>
-              </LinkTo>
-            </td>
+            <td><LinkTo @route="edit-employee" @model={{index}}><i class="fas fa-edit editSymbol"></i></LinkTo></td>
             {{/if}}
+
             {{#if (this.isColumnVisible "delete")}}
-            <td>
-              <button class="button" type="button" {{on "click" (perform this.deleteEmployee index)}}>
-                Delete
-              </button>
-            </td>
+            <td><button class="button" type="button" {{on "click" (perform this.deleteEmployee index)}}>Delete</button></td>
             {{/if}}
+
           </tr>
         </VerticalCollection>
       {{else}}
@@ -145,16 +136,8 @@
 <div class="deleteButtons">
   {{#if (gt this.filteredEmployees.length 1)}}
     <div class="deletebtn">
-      <button class="button selectButton" type="button" {{on "click" (perform this.deleteSelectedEmployees)}}>
-        Select Delete
-      </button>
-      <button 
-        class="button Deleteallemployee" 
-        type="button" 
-        {{on "click" (fn (mut this.showDeleteConfirm) true)}} 
-        {{on-key "Shift+Delete" this.showDeleteConfirm}}>
-        Delete All
-      </button>
+      <button class="button selectButton" type="button" {{on "click" (perform this.deleteSelectedEmployees)}}>Select Delete</button>
+      <button class="button Deleteallemployee" type="button" {{on "click" (fn (mut this.showDeleteConfirm) true)}} {{on-key "Shift+Delete" this.showDeleteConfirm}}>Delete All</button>
     </div>
   {{/if}}
 
@@ -163,12 +146,8 @@
       <div class="confirm-dialog">
         <p>Are you sure you want to delete all employees?</p>
         <div class="confirm-actions">
-          <button class="button" type="button" {{on "click" (perform this.deleteAllEmployees)}} {{on-key "Enter" (perform this.deleteAllEmployees)}}>
-            Yes, Delete
-          </button>
-          <button class="button" type="button" {{on "click" this.cancelDelete}} {{on-key "Escape" this.cancelDelete}}>
-            Cancel
-          </button>
+          <button class="button" type="button" {{on "click" (perform this.deleteAllEmployees)}} {{on-key "Enter" (perform this.deleteAllEmployees)}}>Yes, Delete</button>
+          <button class="button" type="button" {{on "click" this.cancelDelete}} {{on-key "Escape" this.cancelDelete}}>Cancel</button>
         </div>
       </div>
     </div>
